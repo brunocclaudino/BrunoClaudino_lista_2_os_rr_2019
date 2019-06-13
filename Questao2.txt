@@ -1,0 +1,18 @@
+Trancamento (lockout): Vários processos aguardando um evento 
+(recurso ocupado). Neste caso, quando um processo estiver usando um recurso, todos os demais processos devem ser colocados no estado em espera. Este acesso exclusivo do recurso pelo processo é chamado exclusão mútua.
+
+Deadlock (Impasse): Um conjunto de entidades de processamento está em situação 
+de deadlock se cada entidade pertencente ao conjunto está bloqueada esperando por um evento (ou recurso) que  somente  outra entidade no mesmo conjunto pode gerar (ou liberar). Vamos supor que um computador tenha um processo,  O deadlock pode ocorrer mesmo que haja somente um processo no SO, considerando que este processo utilize múltiplos threads e que tais threads requisitem os recursos alocados a outros threads no mesmo processo, vai haver um impasse, pois um determinado recurso pode estar sendo usado por outra thread, havendo um deadlock;
+
+Inanição (starvation): Processo com baixa prioridade nunca obtém um 
+recurso (outros “passam na frente”). Um exemplo comum,  é a de alocação de uma impressora. Considerando que o sistema utilize algum algoritmo que garanta que a alocação da impressora não vai levar a situações de deadlock, e considerando também que diversos processos desejam utilizá-la ao mesmo tempo, deve-se definir qual dos processos tem o direito de usá-la.
+
+Indeterminismo: Múltiplas execuções de uma tarefa podem não gerar o mesmo resultado. Um exemplo de indeterminismo é um problema com variáveis compartilhadas. No  código abaixo, o conteúdo do endereço de memória i([i]) é 100, e i é uma variável compartilhada:
+
+Processo 1:				Processo 2:
+
+move ax,  [i]				move ax,  [i]
+mul ax,     2				sub ax,     50
+mov [i],    ax				mov [i],    ax
+
+i = i * 2				i = i – 50
